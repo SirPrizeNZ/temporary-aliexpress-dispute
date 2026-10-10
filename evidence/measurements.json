@@ -1,0 +1,49 @@
+{
+  "provenance": {
+    "description": "Privacy-minimized extract of saved Watch Audit 0.19 results. Retained measurement values are unchanged.",
+    "measurement_date": "2026-10-09",
+    "firmware_path": "/system/lib64/libc.so",
+    "firmware_sha256": "98712010a5145d250a6eb6562e57d18047eddac46fb6b123e558ce827b2f61f2"
+  },
+  "flash": {
+    "sectors": 30785536,
+    "sector_bytes": 512,
+    "source": "/sys/class/block/mmcblk0/size"
+  },
+  "volumes": [
+    {
+      "path": "/data",
+      "file_total": 61582831616,
+      "file_usable": 52195926016,
+      "file_free": 52386848768,
+      "statfs_total": 61582831616,
+      "statfs_available": 52195926016
+    },
+    {
+      "path": "/storage/emulated/0",
+      "file_total": 61582831616,
+      "file_usable": 52195926016,
+      "file_free": 52386848768,
+      "statfs_total": 61582831616,
+      "statfs_available": 52195926016
+    }
+  ],
+  "native_statfs": {
+    "return": 0,
+    "total": 10043224064,
+    "available": 656318464,
+    "free": 847241216
+  },
+  "direct_syscall_statfs": {
+    "return": 0,
+    "total": 10043224064,
+    "available": 656318464,
+    "free": 847241216
+  },
+  "properties": {
+    "persist.sys.rom": "64G",
+    "persist.sys.truerom": "16GB"
+  },
+  "low_threshold_bytes": 524288000,
+  "full_threshold_bytes": 1048576
+}

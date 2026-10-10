@@ -1,0 +1,20 @@
+{
+  "firmware_sha256": "98712010a5145d250a6eb6562e57d18047eddac46fb6b123e558ce827b2f61f2",
+  "literals": [
+    {
+      "virtual_address": "0xa32aa",
+      "file_offset": 668330,
+      "value": "persist.sys.rom"
+    },
+    {
+      "virtual_address": "0xa32ba",
+      "file_offset": 668346,
+      "value": "/storage/emulated"
+    },
+    {
+      "virtual_address": "0xa2b53",
+      "file_offset": 666451,
+      "value": "/data"
+    }
+  ]
+}

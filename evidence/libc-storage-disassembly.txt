@@ -1,0 +1,120 @@
+
+/system/lib64/libc.so:	file format elf64-littleaarch64
+
+Disassembly of section .text:
+
+00000000000287a4 <statfs>:
+00000000000287a4 <statfs64>:
+   287a4:      	str	x19, [sp, #-0x20]!
+   287a8:      	stp	x29, x30, [sp, #0x10]
+   287ac:      	add	x29, sp, #0x10
+   287b0:      	mov	x19, x1
+   287b4:      	bl	0x6a1fc <__statfs>
+   287b8:      	cbnz	w0, 0x287c8 <statfs64+0x24>
+   287bc:      	ldr	x8, [x19, #0x50]
+   287c0:      	and	x8, x8, #0xffffffffffffffdf
+   287c4:      	str	x8, [x19, #0x50]
+   287c8:      	ldp	x29, x30, [sp, #0x10]
+   287cc:      	ldr	x19, [sp], #0x20
+   287d0:      	ret
+
+00000000000287d4 <statvfs>:
+00000000000287d4 <statvfs64>:
+   287d4:      	sub	sp, sp, #0x130
+   287d8:      	str	x28, [sp, #0xf0]
+   287dc:      	stp	x22, x21, [sp, #0x100]
+   287e0:      	stp	x20, x19, [sp, #0x110]
+   287e4:      	stp	x29, x30, [sp, #0x120]
+   287e8:      	add	x29, sp, #0x120
+   287ec:      	mrs	x21, TPIDR_EL0
+   287f0:      	ldr	x8, [x21, #0x28]
+   287f4:      	mov	x19, x1
+   287f8:      	add	x22, sp, #0x70
+   287fc:      	add	x1, sp, #0x70
+   28800:      	mov	x20, x0
+   28804:      	str	x8, [x22, #0x78]
+   28808:      	bl	0x6a1fc <__statfs>
+   2880c:      	cbnz	w0, 0x28930 <statvfs64+0x15c>
+   28810:      	ldr	x8, [x22, #0x50]
+   28814:      	add	x0, sp, #0x14
+   28818:      	mov	w2, #0x5c               // =92
+   2881c:      	mov	w1, wzr
+   28820:      	and	x8, x8, #0xffffffffffffffdf
+   28824:      	str	x8, [x22, #0x50]
+   28828:      	ldr	x9, [sp, #0x78]
+   2882c:      	str	x9, [x19]
+   28830:      	ldr	x9, [x22, #0x48]
+   28834:      	str	x9, [x19, #0x8]
+   28838:      	ldr	q0, [sp, #0x80]
+   2883c:      	str	q0, [x19, #0x10]
+   28840:      	ldr	q0, [sp, #0x90]
+   28844:      	str	q0, [x19, #0x20]
+   28848:      	ldr	x9, [x22, #0x30]
+   2884c:      	stp	x9, x9, [x19, #0x30]
+   28850:      	ldp	w9, w10, [sp, #0xa8]
+   28854:      	sxtw	x9, w9
+   28858:      	orr	x9, x9, x10, lsl #32
+   2885c:      	stp	x9, x8, [x19, #0x40]
+   28860:      	ldr	x8, [x22, #0x40]
+   28864:      	str	x8, [x19, #0x50]
+   28868:      	bl	0x19500 <memset@plt>
+   2886c:      	bl	0x19630 <getuid@plt>
+   28870:      	mov	w8, #0x2710             // =10000
+   28874:      	cmp	w0, w8
+   28878:      	b.hi	0x28888 <statvfs64+0xb4>
+   2887c:      	bl	0x19630 <getuid@plt>
+   28880:      	cmp	w0, #0x7d0
+   28884:      	b.ne	0x2892c <statvfs64+0x158>
+   28888:      	adrp	x0, 0xa3000 <dlsym+0xa3000>
+   2888c:      	add	x0, x0, #0x2aa
+   28890:      	add	x1, sp, #0x14
+   28894:      	bl	0x18d90 <__system_property_get@plt>
+   28898:      	cmp	w0, #0x1
+   2889c:      	b.lt	0x2892c <statvfs64+0x158>
+   288a0:      	adrp	x1, 0xa3000 <dlsym+0xa3000>
+   288a4:      	add	x1, x1, #0x2ba
+   288a8:      	mov	w2, #0x11               // =17
+   288ac:      	mov	x0, x20
+   288b0:      	bl	0x18d70 <strncmp@plt>
+   288b4:      	cbz	w0, 0x288d0 <statvfs64+0xfc>
+   288b8:      	adrp	x1, 0xa2000 <__multf3+0x684>
+   288bc:      	add	x1, x1, #0xb53
+   288c0:      	mov	w2, #0x5                // =5
+   288c4:      	mov	x0, x20
+   288c8:      	bl	0x18d70 <strncmp@plt>
+   288cc:      	cbnz	w0, 0x2892c <statvfs64+0x158>
+   288d0:      	adrp	x20, 0xd0000 <__progname>
+   288d4:      	ldr	w9, [x20, #0x84]
+   288d8:      	cbz	w9, 0x288e4 <statvfs64+0x110>
+   288dc:      	ldr	x8, [x19, #0x10]
+   288e0:      	b	0x2890c <statvfs64+0x138>
+   288e4:      	add	x0, sp, #0x14
+   288e8:      	bl	0x18cf0 <atoi@plt>
+   288ec:      	ldr	x8, [x19, #0x10]
+   288f0:      	orr	w10, wzr, #0x1
+   288f4:      	lsr	x9, x8, #18
+   288f8:      	lsl	w10, w10, #1
+   288fc:      	cmp	w10, w9
+   28900:      	b.lt	0x288f8 <statvfs64+0x124>
+   28904:      	sub	w9, w0, w10
+   28908:      	str	w9, [x20, #0x84]
+   2890c:      	ldur	q0, [x19, #0x18]
+   28910:      	lsl	w9, w9, #18
+   28914:      	sxtw	x9, w9
+   28918:      	dup	v1.2d, x9
+   2891c:      	add	x8, x8, x9
+   28920:      	add	v0.2d, v0.2d, v1.2d
+   28924:      	str	x8, [x19, #0x10]
+   28928:      	stur	q0, [x19, #0x18]
+   2892c:      	mov	w0, wzr
+   28930:      	ldr	x8, [x21, #0x28]
+   28934:      	ldr	x9, [x22, #0x78]
+   28938:      	cmp	x8, x9
+   2893c:      	b.ne	0x28958 <statvfs64+0x184>
+   28940:      	ldp	x29, x30, [sp, #0x120]
+   28944:      	ldp	x20, x19, [sp, #0x110]
+   28948:      	ldp	x22, x21, [sp, #0x100]
+   2894c:      	ldr	x28, [sp, #0xf0]
+   28950:      	add	sp, sp, #0x130
+   28954:      	ret
+   28958:      	bl	0x18d50 <__stack_chk_fail@plt>
