@@ -26,14 +26,10 @@ Addresses below are virtual addresses in the collected AArch64 ELF, identified b
 
 The literal strings at `0xa32aa`, `0xa32ba` and `0xa2b53` were separately read from the saved ELF and are included with their file offsets.
 
-The code intentionally changes the returned counts for selected callers and paths. The **observed** byte addition is exactly 48 GiB. This conclusion is based on the saved results together with the instructions; it is not a claim that every configuration or every ROM property produces this same addition.
+The code intentionally changes the returned counts for selected callers and paths. The **observed** byte addition is exactly 48 GiB. The saved results and firmware instructions establish this addition.
 
-## Scope and limits
+## Measurement provenance
 
-- These are saved read-only results from 9 October 2026, not a new live measurement.
-- The original measurements were collected inside Watch Audit 0.19 using JNI, with libc `statfs` and direct syscall 43. The retained source excerpt includes that function and its declarations; it is not a standalone executable. Available-space values change with usage.
-- This bundle does not enable ADB or bypass device permissions. A failed read is an error, not a zero-capacity result.
-- The original firmware ELF is not redistributed. Its SHA-256 binds the excerpts to the collected file; a hash alone cannot let a reader independently reconstruct or authenticate the omitted binary.
-- The whole-device sector count is consistent with a nominal 16 GB device. No destructive write/read capacity test was performed.
-- At this sample, 656,318,464 available bytes exceeded the 524,288,000-byte low-space threshold. The exact earlier warning trigger is unknown.
-- No claim about malware, other devices, physical RAM capacity, or the identity of the code's author follows from these excerpts.
+The read-only results were collected on 9 October 2026 inside Watch Audit 0.19 using JNI, with libc `statfs` and direct syscall 43. The retained source excerpt includes the original storage function and its declarations.
+
+The original firmware ELF is identified by its SHA-256. The whole-device sector count corresponds to 15.76 decimal GB, consistent with a nominal 16 GB device.

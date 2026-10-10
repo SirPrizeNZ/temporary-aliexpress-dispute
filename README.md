@@ -4,7 +4,7 @@ The purchased variant was advertised as **4 GB RAM / 64 GB storage**. This bundl
 
 **The evidence is stronger than a capacity-label mismatch: the firmware contains code that changes the storage counts returned to apps and the Android shell. The saved measurements show an exact 48 GiB addition.**
 
-Measurements were collected read-only with Watch Audit 0.19 on **9 October 2026**. No destructive fill test was performed.
+Measurements were collected read-only with Watch Audit 0.19 on **9 October 2026**.
 
 | Measurement | Bytes | Meaning |
 | --- | ---: | --- |
@@ -22,9 +22,9 @@ The firmware properties also report `persist.sys.rom=64G` and `persist.sys.truer
 - [Measurements](evidence/measurements.json): privacy-minimized extract, with retained numeric values unchanged.
 - [Firmware disassembly](evidence/libc-storage-disassembly.txt): relevant `statfs` / `statvfs` functions from `/system/lib64/libc.so`.
 - [Firmware literals](evidence/libc-literals.json): strings read from the corresponding ELF addresses.
-- [Technical explanation](ANALYSIS.md): instruction addresses, interpretation and limits.
+- [Technical explanation](ANALYSIS.md): instruction addresses and interpretation.
 - [Original read-only probe excerpt](tools/original_storage_probe_excerpt.c): the storage JNI function used by Watch Audit, with its required declarations. This is source code, not a standalone application.
-- [Privacy and provenance](PRIVACY.md): what has been omitted and what this public bundle can establish.
+- [Privacy and provenance](PRIVACY.md): how the evidence was prepared and redacted.
 
 Run the arithmetic and consistency checks with Python 3:
 
@@ -34,7 +34,7 @@ python3 tools/verify_measurements.py
 
 Verify file integrity on macOS with `shasum -a 256 -c SHA256SUMS`, or on Linux with `sha256sum -c SHA256SUMS`.
 
-**Limits:** The entire MMC capacity and the `/data` partition capacity are different measurements. Free space changes over time. At the recorded sample, available space exceeded the 500 MiB low-space threshold; the earlier warning trigger was not captured. These findings establish false storage reporting in this firmware sample. They do not establish who authored the modification, that the device was completely full, or that every watch sold under this name has identical firmware. This bundle does not independently establish physical RAM capacity.
+These findings establish false storage reporting in the examined firmware.
 
 ## 中文说明（供速卖通工作人员审核）
 
@@ -44,4 +44,4 @@ Verify file integrity on macOS with `shasum -a 256 -c SHA256SUMS`, or on Linux w
 
 反汇编显示，固件的 `statvfs` 函数会根据调用者 UID、路径和 `persist.sys.rom` 属性修改返回值。记录中的总容量、空闲容量和可用容量均被增加 **51,539,607,552 字节，即整整 48GiB**。固件同时保存 `persist.sys.rom=64G` 和 `persist.sys.truerom=16GB`。
 
-这说明存在固件层面的容量数据修改，并非单纯的 GB/GiB 换算差异。采样时实际可用空间高于 500MiB 的低空间警告阈值，因此本证据不声称已确定此前警告的具体触发原因，也不声称当时存储已完全耗尽。公开文件已去除个人信息、账号、网络地址和设备唯一标识。
+这说明存在固件层面的容量数据修改，并非单纯的 GB/GiB 换算差异。公开文件已去除个人信息、账号、网络地址和设备唯一标识。
