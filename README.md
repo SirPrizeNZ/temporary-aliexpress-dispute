@@ -17,6 +17,10 @@ Measurements were collected read-only with Watch Audit 0.19 on **9 October 2026*
 
 The firmware properties also report `persist.sys.rom=64G` and `persist.sys.truerom=16GB`.
 
+## Listing contradicts the selected variant
+
+The buyer-supplied listing specifications state **RAM: 2GB / ROM: 16 GB**, while the selected purchase variant is **Gunmetal / 4GB 64GB**. The measured 15.76 GB flash capacity matches the table's nominal 16 GB, rather than the selected variant's advertised 64 GB. [Full supplied specifications and variant selection](evidence/listing-specifications.md).
+
 ## Evidence and verification
 
 - [Measurements](evidence/measurements.json): privacy-minimized extract, with retained numeric values unchanged.
@@ -38,7 +42,7 @@ These findings establish false storage reporting in the examined firmware.
 
 ## 中文说明（供速卖通工作人员审核）
 
-购买的规格为 **4GB 内存 / 64GB 存储**。本证据包针对存储容量虚报问题。
+购买的规格为 **Gunmetal（枪灰色），4GB 内存 / 64GB 存储**。买家提供的同一商品页面规格表却写明 **RAM：2GB，ROM：16GB**，与所选购买规格直接矛盾。本证据包针对存储容量虚报问题。
 
 实际读取到的整块闪存容量为 **15,762,194,432 字节（约 15.76GB）**。原生 libc `statfs` 与直接 Linux 系统调用分别读取 `/data`，两者结果一致：实际可用空间为 **656,318,464 字节（约 626MiB）**，而 Android 向应用报告 **52,195,926,016 字节（约 52.20GB）**。
 
